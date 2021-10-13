@@ -8,6 +8,7 @@ export default function usePlacesWidget(props) {
     ref,
     onPlaceSelected,
     apiKey,
+    libraries = ["places"],
     inputAutocompleteValue = "new-password",
     options: {
       types = ["(cities)"],
@@ -29,7 +30,7 @@ export default function usePlacesWidget(props) {
   const autocompleteRef = useRef(null);
   const observerHack = useRef(null);
   const languageQueryParam = language ? `&language=${language}` : "";
-  const googleMapsScriptUrl = `${googleMapsScriptBaseUrl}?libraries=places&key=${apiKey}${languageQueryParam}`;
+  const googleMapsScriptUrl = `${googleMapsScriptBaseUrl}?libraries=${libraries.toString()}&key=${apiKey}${languageQueryParam}`;
 
   const handleLoadScript = useCallback(
     () => loadGoogleMapScript(googleMapsScriptBaseUrl, googleMapsScriptUrl),
